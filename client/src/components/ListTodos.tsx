@@ -1,7 +1,6 @@
 import React from "react";
 import { ITodo } from "../interfaces/todo.interface";
 import Todo from "./Todo";
-import Skeleton from "@mui/material/Skeleton";
 
 interface IListTodoProps {
   todoChanges: number;

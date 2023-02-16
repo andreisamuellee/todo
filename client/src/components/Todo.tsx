@@ -1,6 +1,5 @@
 import { ClickAwayListener } from "@mui/base";
 import React from "react";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useSwipeable } from "react-swipeable";
 import TextareaAutosize from "@mui/base/TextareaAutosize";
 
