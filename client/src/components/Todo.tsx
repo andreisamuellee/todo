@@ -90,14 +90,9 @@ export default function Todo(props: ITodoProps) {
   const handleDelete = (swipeDirection: string) => {
     setDeleteAnimation(`animate-fly-${swipeDirection}`);
     setTimeout(() => {
-      console.log(deleteAnimation);
       deleteTodo(props.id);
     }, 700);
   };
-
-  React.useEffect(() => {
-    console.log(deleteAnimation);
-  }, [deleteAnimation]);
 
   return (
     <div

@@ -31,7 +31,7 @@ export default function ListTodos(props: IListTodoProps) {
   return (
     <>
       <div className="flex flex-col gap-1">
-        {todos.reverse().map((todo: ITodo) => {
+        {todos.map((todo: ITodo) => {
           return (
             <Todo
               key={todo.id}
