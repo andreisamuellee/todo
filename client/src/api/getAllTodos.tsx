@@ -10,7 +10,7 @@ export default function useGetAllTodos() {
   const run = React.useCallback(async () => {
     try {
       setIsLoading(true);
-      await fetch("http://localhost:4000/todos", {
+      await fetch("/todos", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       })

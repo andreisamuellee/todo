@@ -1,7 +1,7 @@
 export default async function createTodo(description: string) {
   try {
     const body = { description };
-    await fetch("http://localhost:4000/todos", {
+    await fetch("/todos", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

@@ -13,7 +13,7 @@ export default function ListTodos(props: IListTodoProps) {
 
   const loadTodos = async () => {
     try {
-      await fetch("http://localhost:4000/todos", {
+      await fetch("/todos", {
         method: "GET",
         headers: { "Content-Type": "application/json" },
       })

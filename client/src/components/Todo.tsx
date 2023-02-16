@@ -63,7 +63,7 @@ export default function Todo(props: ITodoProps) {
 
   const deleteTodo = async (id: number) => {
     try {
-      await fetch("http://localhost:4000/todos/" + id.toString(), {
+      await fetch("/todos/" + id.toString(), {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       }).finally(props.setTodoChanges((prevState: number) => prevState + 1));
@@ -75,7 +75,7 @@ export default function Todo(props: ITodoProps) {
   const updateTodo = async () => {
     try {
       const body = { description: value };
-      await fetch("http://localhost:4000/todos/" + props.id.toString(), {
+      await fetch("/todos/" + props.id.toString(), {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
