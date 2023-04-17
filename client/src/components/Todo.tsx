@@ -6,7 +6,8 @@ import TextareaAutosize from "@mui/base/TextareaAutosize";
 interface ITodoProps {
   id: number;
   description: string;
-  setTodoChanges: Function;
+  deleteTodo: Function;
+  updateTodo: Function;
 }
 
 function useDoubleClick(actionDoubleClick: Function, delay = 250) {
@@ -50,7 +51,8 @@ export default function Todo(props: ITodoProps) {
 
   React.useEffect(() => {
     if (!isEditing && value !== props.description) {
-      updateTodo();
+      props.updateTodo(props.id, value);
+      setIsEditing(false);
     }
   }, [isEditing]);
 
@@ -60,36 +62,10 @@ export default function Todo(props: ITodoProps) {
     setBackgroundColorClass(randomBackgroundColor);
   };
 
-  const deleteTodo = async (id: number) => {
-    try {
-      await fetch("/todos/" + id.toString(), {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-      }).finally(props.setTodoChanges((prevState: number) => prevState + 1));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const updateTodo = async () => {
-    try {
-      const body = { description: value };
-      await fetch("/todos/" + props.id.toString(), {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      })
-        .then(() => props.setTodoChanges((prevState: number) => prevState + 1))
-        .finally(() => setIsEditing(false));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleDelete = (swipeDirection: string) => {
     setDeleteAnimation(`animate-fly-${swipeDirection}`);
     setTimeout(() => {
-      deleteTodo(props.id);
+      props.deleteTodo(props.id);
     }, 700);
   };
 
