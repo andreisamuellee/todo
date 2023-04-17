@@ -1,8 +1,9 @@
 import React from "react";
+import { ITodo } from "../interfaces/todo.interface";
 
 interface IInputTodoProps {
-  todoChanges: number;
-  setTodoChanges: Function;
+  todos: Array<ITodo>;
+  setTodos: Function;
 }
 
 export default function InputTodo(props: IInputTodoProps) {
@@ -14,18 +15,21 @@ export default function InputTodo(props: IInputTodoProps) {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setColorShuffle((prev) => !prev);
-    try {
-      const body = { description };
-      await fetch("/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      })
-        .then(() => props.setTodoChanges(props.todoChanges + 1))
-        .finally(() => setDescription(""));
-    } catch (error) {
-      console.log(error);
+    const body = { description };
+    const response = await fetch("http://localhost:4000/todos", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    setDescription("");
+    if (!response.ok) {
+      console.error(`Failed to create new todo. Status: ${response.status}`);
+      return;
     }
+    const newTodo = await response.json();
+    props.setTodos((todos: Array<ITodo>) => {
+      return [newTodo, ...todos];
+    });
   };
 
   React.useEffect(() => {
