@@ -2,9 +2,10 @@ import React from "react";
 import "./App.css";
 import InputTodo from "./components/InputTodo";
 import ListTodos from "./components/ListTodos";
+import { ITodo } from "./interfaces/todo.interface";
 
 function App() {
-  const [todoChanges, setTodoChanges] = React.useState(0);
+  const [todos, setTodos] = React.useState<Array<ITodo>>([]);
 
   return (
     <>
@@ -19,15 +20,9 @@ function App() {
             <div className="text-gray-500 italic mb-1">
               swipe to delete, double click to edit :)
             </div>
-            <InputTodo
-              todoChanges={todoChanges}
-              setTodoChanges={setTodoChanges}
-            ></InputTodo>
+            <InputTodo todos={todos} setTodos={setTodos}></InputTodo>
           </div>
-          <ListTodos
-            setTodoChanges={setTodoChanges}
-            todoChanges={todoChanges}
-          ></ListTodos>
+          <ListTodos setTodos={setTodos} todos={todos}></ListTodos>
         </div>
       </div>
     </>
