@@ -1,6 +1,7 @@
 # todo
 
 PERN Full stack todo-app by Andrei Lee
+
 Deployed at https://andrei-todo-app.herokuapp.com/
 
 * Postgres
