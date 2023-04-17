@@ -4,7 +4,7 @@ import { ITodo } from "../interfaces/todo.interface";
 import Todo from "./Todo";
 
 interface IListTodoProps {
-  todos: any;
+  todos: Array<ITodo>;
   setTodos: Function;
 }
 
